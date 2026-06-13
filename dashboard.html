@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Bank Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<body>
+
+<div class="sidebar">
+    <h2>🏦 Apex Bank</h2>
+
+    <ul>
+        <li>📊 Dashboard</li>
+        <li>💳 Accounts</li>
+        <li>💸 Transfer Money</li>
+        <li>📄 Transactions</li>
+        <li>💰 Loans</li>
+        <li>⚙️ Settings</li>
+        <li onclick="logout()">Logout</li>
+    </ul>
+</div>
+
+<div class="main">
+
+    <div class="topbar">
+        <input type="text" placeholder="Search transactions, accounts...">
+        <div class="profile">
+            <span>🔔</span>
+            <strong>Corrie</strong>
+        </div>
+    </div>
+
+    <h1>Welcome Back, Corrie 👋</h1>
+
+    <h3>
+    Account Number:
+    <span id="accountNumber"></span>
+</h3>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Balance</h3>
+            <h2>$24,750.50</h2>
+        </div>
+
+        <div class="card">
+            <h3>Savings</h3>
+            <h2>$15,250.00</h2>
+        </div>
+
+        <div class="card">
+            <h3>Checking</h3>
+            <h2>$8,450.75</h2>
+        </div>
+
+        <div class="card">
+            <h3>Credit Card</h3>
+            <h2>$4,049.75</h2>
+        </div>
+
+    </div>
+
+    <div class="credit-card">
+        <h3>Apex Bank Visa</h3>
+        <h2>**** 9012</h2>
+        <p>Available Credit: $4,049.75</p>
+    </div>
+
+    <div class="quick-actions">
+        <button>Send Money</button>
+        <button>Bill Pay</button>
+        <button>Add Money</button>
+        <button>Statements</button>
+    </div>
+
+    <div class="transactions">
+        <h2>Recent Transactions</h2>
+
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+
+            <tr>
+                <td>13 Jun</td>
+                <td>Salary Deposit</td>
+                <td>+$3,500</td>
+            </tr>
+
+            <tr>
+                <td>12 Jun</td>
+                <td>Amazon Purchase</td>
+                <td>-$75</td>
+            </tr>
+
+            <tr>
+                <td>11 Jun</td>
+                <td>Netflix Subscription</td>
+                <td>-$15</td>
+            </tr>
+
+            <tr>
+                <td>10 Jun</td>
+                <td>Transfer Received</td>
+                <td>+$500</td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
