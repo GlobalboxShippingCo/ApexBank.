@@ -137,62 +137,32 @@ if (notification && notificationElement) {
 // Transfer
 // =============================
 
-function transfer(){
+function transfer() {
 
-    let recipient =
-        document.getElementById("recipient").value;
+    let recipient = document.getElementById("recipient").value;
+    let account = document.getElementById("account").value;
+    let bank = document.getElementById("bank").value;
+    let amount = Number(document.getElementById("amount").value);
+    let narration = document.getElementById("description").value;
 
-    let account =
-        document.getElementById("account").value;
-
-    let bank =
-        document.getElementById("bank").value;
-
-    let amount =
-        Number(document.getElementById("amount").value);
-
-    let narration =
-        document.getElementById("description").value;
-
-    if(
-        recipient==="" ||
-        account==="" ||
-        bank==="" ||
-        narration==="" ||
-        amount<=0
-    ){
-
+    if (!recipient || !account || !bank || !amount || amount <= 0) {
         alert("Please complete all fields.");
-
         return;
-
     }
 
-    let balance =
-        Number(localStorage.getItem("balance"));
+    let balance = Number(localStorage.getItem("balance")) || 0;
 
-    if(amount>balance){
-
+    if (amount > balance) {
         alert("Insufficient Balance");
-
         return;
-
     }
 
     balance -= amount;
+    localStorage.setItem("balance", balance);
 
-    localStorage.setItem("balance",balance);
+    let message = "You transferred $" + amount.toFixed(2) + " to " + recipient + " (" + bank + ")";
+    localStorage.setItem("notification", message);
 
-    let message =
-    "You transferred $" +
-    amount.toFixed(2) +
-    " to " +
-    recipient +
-    " (" + bank + ").";
-
-localStorage.setItem("notification", message);
-
-alert("Transfer Successful!");
-
-window.location.href = "dashboard.html";
+    alert("Transfer Successful!");
+    window.location.href = "dashboard.html";
 }
