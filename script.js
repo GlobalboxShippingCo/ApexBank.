@@ -238,3 +238,12 @@ localStorage.setItem(
     alert("Transfer Successful!");
     window.location.href = "dashboard.html";
 }
+
+function toggleMenu(){
+
+    let sidebar =
+        document.getElementById("sidebar");
+
+    sidebar.classList.toggle("show");
+
+}
