@@ -1,50 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apex Bank Dashboard</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
 <body>
 
 <div class="sidebar">
+
     <h2>🏦 Apex Bank</h2>
 
     <ul>
-    <li><a href="dashboard.html">📊 Dashboard</a></li>
-    <li><a href="transfer.html">💸 Transfer Money</a></li>
-    <li><a href="#">📄 Transactions</a></li>
-    <li><a href="#" onclick="logout()">Logout</a></li>
-</ul>
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="transfer.html">💸 Transfer Money</a></li>
+        <li><a href="#">📄 Transactions</a></li>
+        <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+    </ul>
+
 </div>
 
 <div class="main">
 
     <div class="topbar">
-        <input type="text" placeholder="Search transactions, accounts...">
+
+        <input
+            type="text"
+            placeholder="Search...">
+
         <div class="profile">
             <span>🔔</span>
             <strong>Corrie</strong>
         </div>
+
     </div>
 
-   <h1 id="welcome">Welcome Back, Corrie 👋</h1>
+    <h1 id="welcome">Welcome Back, Corrie 👋</h1>
 
-<h3>
-    Account Number:
-    <span id="accountNumber"></span>
-</h3>
+    <h3>
+        Account Number:
+        <span id="accountNumber"></span>
+    </h3>
 
-<div class="cards">
+    <div class="cards">
 
-    <div class="card">
-        <h3>Total Balance</h3>
-        <h2 id="balance">$24,750.50</h2>
-    </div>
+        <div class="card">
+            <h3>Total Balance</h3>
+            <h2 id="balance">$24,750.50</h2>
+        </div>
 
-</div>
         <div class="card">
             <h3>Savings</h3>
             <h2>$15,250.00</h2>
@@ -63,84 +70,78 @@
     </div>
 
     <div class="credit-card">
+
         <h3>Apex Bank Visa</h3>
+
         <h2>**** 9012</h2>
+
         <p>Available Credit: $4,049.75</p>
+
     </div>
 
     <div class="quick-actions">
+
         <button>Send Money</button>
+
         <button>Bill Pay</button>
+
         <button>Add Money</button>
+
         <button>Statements</button>
+
     </div>
 
-    <div class="notifications card">
-    <h2>🔔 Notifications</h2>
+    <div class="card">
 
-    <p id="notification">
-        No new notifications.
-    </p>
-</div>
+        <h2>🔔 Notifications</h2>
 
-<div class="card">
-    <h2>Recent Transactions</h2>
+        <p id="notification">
 
-    <table>
-        <thead>
-            <tr>
-    <th>Reference</th>
-    <th>Date</th>
-    <th>Recipient</th>
-    <th>Amount</th>
-    <th>Status</th>
-</tr>
-        </thead>
+            No new notifications.
 
-        <tbody id="transactionBody">
+        </p>
 
-        </tbody>
-    </table>
-</div>
+    </div>
 
-    <div class="transactions">
+    <div class="card">
+
         <h2>Recent Transactions</h2>
 
+        <div style="overflow-x:auto;">
+
         <table>
-            <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-            </tr>
 
-            <tr>
-                <td>13 Jun</td>
-                <td>Salary Deposit</td>
-                <td>+$3,500</td>
-            </tr>
+            <thead>
 
-            <tr>
-                <td>12 Jun</td>
-                <td>Amazon Purchase</td>
-                <td>-$75</td>
-            </tr>
+                <tr>
 
-            <tr>
-                <td>11 Jun</td>
-                <td>Netflix Subscription</td>
-                <td>-$15</td>
-            </tr>
+                    <th>Reference</th>
 
-            <tr>
-                <td>10 Jun</td>
-                <td>Transfer Received</td>
-                <td>+$500</td>
-            </tr>
+                    <th>Date</th>
+
+                    <th>Recipient</th>
+
+                    <th>Amount</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="transactionBody">
+
+            </tbody>
 
         </table>
+
+        </div>
+
     </div>
 
 </div>
+
 <script src="script.js"></script>
+
 </body>
 </html>
