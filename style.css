@@ -205,10 +205,21 @@ button{
 
 @media (max-width:768px){
 
-    .sidebar{
-        display:none;
-    }
+   .sidebar{
+    position:fixed;
+    top:0;
+    left:-260px;
+    width:250px;
+    height:100%;
+    background:#0b1f4d;
+    padding:20px;
+    z-index:999;
+    transition:left 0.3s ease;
+}
 
+.sidebar.show{
+    left:0;
+}
     .main{
         margin-left:0;
         width:100%;
