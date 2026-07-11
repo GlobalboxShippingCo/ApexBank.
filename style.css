@@ -1,51 +1,74 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f2f4f8;
+/* ==========================
+   GENERAL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.logo {
-    text-align: center;
-    margin-top: 20px;
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+    color:#222;
 }
 
-.logo h1 {
-    color: #003366;
-    margin-bottom: 5px;
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#0b1f4d;
+    color:#fff;
+    padding:25px;
 }
 
-.logo p {
-    color: #666;
+.sidebar h2{
+    margin-bottom:30px;
 }
 
-.container {
-    width: 90%;
-    max-width: 500px;
-    margin: 50px auto;
+.sidebar ul{
+    list-style:none;
 }
 
-.card {
-    background: white;
-    padding: 20px;
-    margin-top: 15px;
-    border-radius: 10px;
+.sidebar li{
+    margin:18px 0;
 }
 
-button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
+.sidebar a{
+    color:#fff;
+    text-decoration:none;
+    font-size:18px;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
+.sidebar a:hover{
+    color:#ffd54f;
 }
+
+/* ==========================
+   MAIN
+========================== */
+
+.main{
+    margin-left:250px;
+    padding:25px;
+}
+
+/* ==========================
+   TOPBAR
+========================== */
 
 .topbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+    margin-bottom:25px;
 }
 
 .topbar input{
@@ -53,197 +76,181 @@ input {
     padding:12px;
     border:none;
     border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
 
 .profile{
     display:flex;
-    gap:15px;
     align-items:center;
+    gap:12px;
 }
 
-.credit-card{
+/* ==========================
+   CARDS
+========================== */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
     margin-top:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card h2{
+    color:#0b1f4d;
+}
+
+/* ==========================
+   CREDIT CARD
+========================== */
+
+.credit-card{
+    margin-top:25px;
     background:#0b1f4d;
-    color:white;
+    color:#fff;
     padding:25px;
     border-radius:15px;
 }
 
+/* ==========================
+   QUICK ACTIONS
+========================== */
+
 .quick-actions{
-    margin-top:20px;
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:15px;
+    margin-top:25px;
 }
 
 .quick-actions button{
     padding:15px;
     border:none;
     border-radius:10px;
-    background:white;
+    background:#fff;
     cursor:pointer;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
 .quick-actions button:hover{
-    background:#f0f0f0;
+    background:#ececec;
 }
 
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f6f9;
-}
-
-.sidebar{
-    background:#0b1f4d;
-    color:white;
-    padding:15px;
-}
-
-.sidebar ul{
-    list-style:none;
-    padding:0;
-}
-
-.sidebar li{
-    margin:20px 0;
-}
-
-.main{
-    padding:20px;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.card{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-.transactions{
-    margin-top:30px;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-}
+/* ==========================
+   TABLE
+========================== */
 
 table{
     width:100%;
     border-collapse:collapse;
+    margin-top:15px;
 }
 
-th,td{
+th{
+    background:#0b1f4d;
+    color:white;
+}
+
+th,
+td{
     padding:12px;
     border-bottom:1px solid #ddd;
+    text-align:left;
 }
 
-.cards{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
+/* ==========================
+   NOTIFICATION
+========================== */
+
+#notification{
+    margin-top:10px;
+    color:#333;
 }
 
-.card{
-    flex:1;
-    min-width:220px;
+/* ==========================
+   BUTTONS
+========================== */
+
+button{
+    cursor:pointer;
 }
 
-@media screen and (max-width:768px){
-
-.menu-btn{
-    display:block;
-}
-
-.sidebar{
-
-    position:fixed;
-    left:-260px;
-    top:0;
-    width:250px;
-    height:100%;
-    transition:.3s;
-    z-index:1000;
-
-}
-
-.sidebar.show{
-
-    left:0;
-
-}
-
-.main{
-
-    margin-left:0;
-    padding:15px;
-
-}
-
-.topbar{
-
-    flex-direction:column;
-
-}
-
-.topbar input{
-
-    width:100%;
-
-}
-
-.cards{
-
-    display:flex;
-    flex-direction:column;
-
-}
-
-.quick-actions{
-
-    grid-template-columns:repeat(2,1fr);
-
-}
-
-table{
-
-    display:block;
-    overflow-x:auto;
-
-}
-
-}
-
-@media (max-width:768px){
-
-    .sidebar ul{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:10px;
-    }
-
-    .sidebar li{
-        margin:0;
-        background:white;
-        color:#0b1f4d;
-        padding:8px 12px;
-        border-radius:8px;
-    }
-}
+/* ==========================
+   MOBILE MENU BUTTON
+========================== */
 
 .menu-btn{
     display:none;
     font-size:28px;
-    background:none;
     border:none;
+    background:none;
     cursor:pointer;
     margin-bottom:15px;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width:768px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+        padding:15px;
+    }
+
+    .topbar{
+        flex-direction:column;
+        gap:15px;
+        align-items:stretch;
+    }
+
+    .topbar input{
+        width:100%;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .quick-actions{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .credit-card{
+        width:100%;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+    th,
+    td{
+        font-size:13px;
+        padding:10px;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
 }
