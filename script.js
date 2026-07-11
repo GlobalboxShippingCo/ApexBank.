@@ -81,51 +81,103 @@ function logout(){
 // Dashboard
 // =============================
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
-    let welcome =
-        document.getElementById("welcome");
+    // Welcome Message
+    let welcome = document.getElementById("welcome");
 
-    if(welcome){
-
-        welcome.innerText =
-            "Welcome Back, Corrie 👋";
-
+    if (welcome) {
+        welcome.innerText = "Welcome Back, Corrie 👋";
     }
 
-    let accountElement =
-        document.getElementById("accountNumber");
+    // Account Number
+    let accountElement = document.getElementById("accountNumber");
 
-    if(accountElement){
-
+    if (accountElement) {
         accountElement.innerText =
             localStorage.getItem("accountNumber");
-
-            let notification =
-    localStorage.getItem("notification");
-
-let notificationElement =
-    document.getElementById("notification");
-
-if (notification && notificationElement) {
-    notificationElement.textContent = notification;
-}
-
     }
 
+    // Notification
+    let notification =
+        localStorage.getItem("notification");
+
+    let notificationElement =
+        document.getElementById("notification");
+
+    if (notification && notificationElement) {
+        notificationElement.textContent = notification;
+    }
+
+    // Balance
     let balance =
         Number(localStorage.getItem("balance")) || 24750.50;
 
     let balanceElement =
         document.getElementById("balance");
 
-    if(balanceElement){
-
+    if (balanceElement) {
         balanceElement.innerText =
-            "$" + balance.toLocaleString(undefined,{
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
+            "$" + balance.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
             });
+    }
+
+    // Load Transactions
+    let transactions =
+        JSON.parse(localStorage.getItem("transactions")) || [];
+
+    // Change Pending to Successful after 10 minutes
+    transactions.forEach(function (transaction) {
+
+        if (
+            transaction.status === "Pending" &&
+            Date.now() - transaction.createdAt >= 10 * 60 * 1000
+        ) {
+            transaction.status = "Successful";
+        }
+
+    });
+
+    localStorage.setItem(
+        "transactions",
+        JSON.stringify(transactions)
+    );
+
+    // Display Transactions
+    let transactionBody =
+        document.getElementById("transactionBody");
+
+    if (transactionBody) {
+
+        transactionBody.innerHTML = "";
+
+        transactions.forEach(function (transaction) {
+
+            let color =
+                transaction.status === "Pending"
+                    ? "orange"
+                    : "green";
+
+            let icon =
+                transaction.status === "Pending"
+                    ? "🟡"
+                    : "🟢";
+
+            transactionBody.innerHTML += `
+                <tr>
+                    <td>${transaction.reference}</td>
+                    <td>${transaction.date}</td>
+                    <td>${transaction.recipient}</td>
+                    <td>${transaction.amount}</td>
+                    <td style="color:${color};font-weight:bold;">
+                        ${icon} ${transaction.status}
+                    </td>
+                </tr>
+            `;
+
+        });
 
     }
 
@@ -159,6 +211,26 @@ function transfer() {
 
     balance -= amount;
     localStorage.setItem("balance", balance);
+
+    let transactions =
+    JSON.parse(localStorage.getItem("transactions")) || [];
+
+let reference = "TRX" + Date.now();
+
+transactions.unshift({
+    reference: reference,
+    date: new Date().toLocaleString(),
+    recipient: recipient,
+    bank: bank,
+    amount: "-$" + amount.toFixed(2),
+    status: "Pending",
+    createdAt: Date.now()
+});
+
+localStorage.setItem(
+    "transactions",
+    JSON.stringify(transactions)
+);
 
     let message = "You transferred $" + amount.toFixed(2) + " to " + recipient + " (" + bank + ")";
     localStorage.setItem("notification", message);
