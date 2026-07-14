@@ -14,10 +14,19 @@
 
     <h1>Transfer Money</h1>
 
+    <label><strong>Select Beneficiary</strong></label>
+
+<select id="beneficiarySelect" onchange="selectBeneficiary()">
+    <option value="">-- Select Beneficiary --</option>
+</select>
+
+<br><br>
+
     <input
         type="text"
         id="recipient"
         placeholder="Recipient Name">
+
 
     <input
         type="text"

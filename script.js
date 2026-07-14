@@ -182,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     loadBeneficiaries();
+    loadBeneficiaryDropdown();
 
 });
 
@@ -337,5 +338,58 @@ function deleteBeneficiary(index){
     );
 
     loadBeneficiaries();
+
+}
+
+function loadBeneficiaryDropdown() {
+
+    let select =
+        document.getElementById("beneficiarySelect");
+
+    if (!select) return;
+
+    select.innerHTML =
+        '<option value="">-- Select Beneficiary --</option>';
+
+    let beneficiaries =
+        JSON.parse(localStorage.getItem("beneficiaries")) || [];
+
+    beneficiaries.forEach(function(beneficiary){
+
+        select.innerHTML += `
+            <option value="${beneficiary.account}">
+                ${beneficiary.name} - ${beneficiary.bank}
+            </option>
+        `;
+
+    });
+
+}
+
+function selectBeneficiary(){
+
+    let account =
+        document.getElementById("beneficiarySelect").value;
+
+    let beneficiaries =
+        JSON.parse(localStorage.getItem("beneficiaries")) || [];
+
+    let beneficiary =
+        beneficiaries.find(function(item){
+
+            return item.account === account;
+
+        });
+
+    if(!beneficiary) return;
+
+    document.getElementById("recipient").value =
+        beneficiary.name;
+
+    document.getElementById("bank").value =
+        beneficiary.bank;
+
+    document.getElementById("account").value =
+        beneficiary.account;
 
 }
