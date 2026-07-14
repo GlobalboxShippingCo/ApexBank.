@@ -247,3 +247,93 @@ function toggleMenu(){
     sidebar.classList.toggle("show");
 
 }
+
+// =============================
+// Beneficiaries
+// =============================
+
+function saveBeneficiary() {
+
+    let name =
+        document.getElementById("beneficiaryName").value;
+
+    let bank =
+        document.getElementById("beneficiaryBank").value;
+
+    let account =
+        document.getElementById("beneficiaryAccount").value;
+
+    if (name === "" || bank === "" || account === "") {
+        alert("Please complete all fields.");
+        return;
+    }
+
+    let beneficiaries =
+        JSON.parse(localStorage.getItem("beneficiaries")) || [];
+
+    beneficiaries.push({
+        name: name,
+        bank: bank,
+        account: account
+    });
+
+    localStorage.setItem(
+        "beneficiaries",
+        JSON.stringify(beneficiaries)
+    );
+
+    alert("Beneficiary saved successfully!");
+
+    document.getElementById("beneficiaryName").value = "";
+    document.getElementById("beneficiaryBank").value = "";
+    document.getElementById("beneficiaryAccount").value = "";
+
+    loadBeneficiaries();
+}
+
+function loadBeneficiaries() {
+
+    let beneficiaryBody =
+        document.getElementById("beneficiaryBody");
+
+    if (!beneficiaryBody) return;
+
+    beneficiaryBody.innerHTML = "";
+
+    let beneficiaries =
+        JSON.parse(localStorage.getItem("beneficiaries")) || [];
+
+    beneficiaries.forEach(function(beneficiary, index){
+
+        beneficiaryBody.innerHTML += `
+            <tr>
+                <td>${beneficiary.name}</td>
+                <td>${beneficiary.bank}</td>
+                <td>${beneficiary.account}</td>
+                <td>
+                    <button onclick="deleteBeneficiary(${index})">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        `;
+
+    });
+
+}
+
+function deleteBeneficiary(index){
+
+    let beneficiaries =
+        JSON.parse(localStorage.getItem("beneficiaries")) || [];
+
+    beneficiaries.splice(index,1);
+
+    localStorage.setItem(
+        "beneficiaries",
+        JSON.stringify(beneficiaries)
+    );
+
+    loadBeneficiaries();
+
+}

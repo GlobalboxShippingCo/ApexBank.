@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficiaries - Apex Bank</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="main">
+
+    <h1>👥 Beneficiaries</h1>
+
+    <div class="card">
+
+        <input
+            type="text"
+            id="beneficiaryName"
+            placeholder="Beneficiary Name">
+
+        <br><br>
+
+        <input
+            type="text"
+            id="beneficiaryBank"
+            placeholder="Bank Name">
+
+        <br><br>
+
+        <input
+            type="text"
+            id="beneficiaryAccount"
+            placeholder="Account Number">
+
+        <br><br>
+
+        <button onclick="saveBeneficiary()">
+            Save Beneficiary
+        </button>
+
+    </div>
+
+    <br>
+
+    <div class="card">
+
+        <h2>Saved Beneficiaries</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>Bank</th>
+                    <th>Account</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="beneficiaryBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
