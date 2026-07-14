@@ -181,6 +181,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    loadBeneficiaries();
+
 });
 
 
