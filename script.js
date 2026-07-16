@@ -183,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loadBeneficiaries();
     loadBeneficiaryDropdown();
+    loadStatement();
 
 });
 
@@ -273,6 +274,8 @@ function saveBeneficiary() {
 
     let beneficiaries =
         JSON.parse(localStorage.getItem("beneficiaries")) || [];
+
+        console.log(beneficiaries);
 
     beneficiaries.push({
         name: name,
@@ -391,5 +394,78 @@ function selectBeneficiary(){
 
     document.getElementById("account").value =
         beneficiary.account;
+
+}
+
+// =============================
+// Statement
+// =============================
+
+function loadStatement() {
+
+    let statementBody =
+        document.getElementById("statementBody");
+
+    if (!statementBody) return;
+
+    // Customer Name
+let customer =
+    document.getElementById("customerName");
+
+if (customer) {
+    customer.textContent =
+        localStorage.getItem("fullname") || "Customer";
+}
+
+// Account Number
+let account =
+    document.getElementById("statementAccount");
+
+if (account) {
+    account.textContent =
+        localStorage.getItem("accountNumber") || "N/A";
+}
+
+// Current Balance
+let balance =
+    Number(localStorage.getItem("balance")) || 0;
+
+let balanceElement =
+    document.getElementById("statementBalance");
+
+if (balanceElement) {
+    balanceElement.textContent =
+        "$" + balance.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+}
+
+    // Transactions
+    let transactions =
+        JSON.parse(localStorage.getItem("transactions")) || [];
+
+    statementBody.innerHTML = "";
+
+    transactions.forEach(function(transaction){
+
+        let color =
+            transaction.status === "Pending"
+                ? "orange"
+                : "green";
+
+        statementBody.innerHTML += `
+            <tr>
+                <td>${transaction.reference}</td>
+                <td>${transaction.date}</td>
+                <td>${transaction.recipient}</td>
+                <td>${transaction.amount}</td>
+                <td style="color:${color};font-weight:bold;">
+                    ${transaction.status}
+                </td>
+            </tr>
+        `;
+
+    });
 
 }

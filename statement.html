@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bank Statement</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🏦 Apex Bank</h1>
+
+    <h2>Account Statement</h2>
+
+    <hr>
+
+    <p>
+        <strong>Account Holder:</strong>
+        <span id="customerName"></span>
+    </p>
+
+    <p>
+        <strong>Account Number:</strong>
+        <span id="statementAccount"></span>
+    </p>
+
+    <p>
+        <strong>Current Balance:</strong>
+        <span id="statementBalance"></span>
+    </p>
+
+    <br>
+
+    <div style="overflow-x:auto;">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Reference</th>
+                    <th>Date</th>
+                    <th>Recipient</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="statementBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <br>
+
+    <button onclick="window.print()">
+        🖨 Print Statement
+    </button>
+
+    <button onclick="history.back()">
+        ⬅ Back
+    </button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
