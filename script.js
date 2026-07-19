@@ -131,12 +131,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Change Pending to Successful after 10 minutes
     transactions.forEach(function (transaction) {
 
-        if (
-            transaction.status === "Pending" &&
-            Date.now() - transaction.createdAt >= 10 * 60 * 1000
-        ) {
-            transaction.status = "Successful";
-        }
+        let elapsed = Date.now() - transaction.createdAt;
+
+if (transaction.status === "Pending" && elapsed >= 10 * 60 * 1000) {
+    transaction.status = "Successful";
+}
+
+if (transaction.status === "Successful" && elapsed >= 11 * 60 * 1000) {
+    transaction.status = "Approved";
+}
 
     });
 
@@ -155,15 +158,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         transactions.forEach(function (transaction) {
 
-            let color =
-                transaction.status === "Pending"
-                    ? "orange"
-                    : "green";
+            let color = "green";
+let icon = "🟢";
 
-            let icon =
-                transaction.status === "Pending"
-                    ? "🟡"
-                    : "🟢";
+if (transaction.status === "Pending") {
+    color = "orange";
+    icon = "🟡";
+} else if (transaction.status === "Successful") {
+    color = "green";
+    icon = "🟢";
+} else if (transaction.status === "Approved") {
+    color = "blue";
+    icon = "✅";
+}
 
             transactionBody.innerHTML += `
                 <tr>
@@ -172,8 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${transaction.recipient}</td>
                     <td>${transaction.amount}</td>
                     <td style="color:${color};font-weight:bold;">
-                        ${icon} ${transaction.status}
-                    </td>
+    ${icon} ${transaction.status}
+</td>
                 </tr>
             `;
 
