@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Debit Card</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💳 Request Debit Card</h1>
+
+<div class="card">
+
+<p><strong>Account Holder</strong></p>
+
+<input
+type="text"
+id="cardName"
+readonly>
+
+<br><br>
+
+<label>Card Type</label>
+
+<select id="cardType">
+
+<option>Visa Debit Card</option>
+
+<option>Mastercard Debit Card</option>
+
+</select>
+
+<br><br>
+
+<input
+type="text"
+id="address"
+placeholder="Delivery Address">
+
+<br><br>
+
+<input
+type="text"
+id="city"
+placeholder="City">
+
+<br><br>
+
+<input
+type="text"
+id="state"
+placeholder="State">
+
+<br><br>
+
+<input
+type="text"
+id="zip"
+placeholder="ZIP Code">
+
+<br><br>
+
+<input
+type="text"
+id="phone"
+placeholder="Phone Number">
+
+<br><br>
+
+<button onclick="requestDebitCard()">
+Request Debit Card
+</button>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>Card Request Status</h2>
+
+<p id="cardStatus">
+No request submitted.
+</p>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

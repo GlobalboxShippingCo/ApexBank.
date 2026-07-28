@@ -191,6 +191,7 @@ if (transaction.status === "Pending") {
     loadBeneficiaries();
     loadBeneficiaryDropdown();
     loadStatement();
+    loadDebitCard();
 
 });
 
@@ -475,4 +476,81 @@ if (balanceElement) {
 
     });
 
+}
+
+// =============================
+// Debit Card
+// =============================
+
+function loadDebitCard() {
+
+    let cardName =
+        document.getElementById("cardName");
+
+    if (cardName) {
+        cardName.value =
+            localStorage.getItem("fullname") || "";
+    }
+
+    let status =
+        document.getElementById("cardStatus");
+
+    if (!status) return;
+
+    let request =
+        JSON.parse(localStorage.getItem("debitCardRequest"));
+
+    if (!request) {
+        status.innerHTML = "No request submitted.";
+        return;
+    }
+
+    status.innerHTML = `
+        <strong>Status:</strong> ${request.status}<br>
+        <strong>Card Type:</strong> ${request.cardType}<br>
+        <strong>Requested:</strong> ${request.date}
+    `;
+}
+
+function requestDebitCard() {
+
+    let request = {
+
+        name:
+            localStorage.getItem("fullname"),
+
+        cardType:
+            document.getElementById("cardType").value,
+
+        address:
+            document.getElementById("address").value,
+
+        city:
+            document.getElementById("city").value,
+
+        state:
+            document.getElementById("state").value,
+
+        zip:
+            document.getElementById("zip").value,
+
+        phone:
+            document.getElementById("phone").value,
+
+        status: "🟡 Processing",
+
+        createdAt: Date.now(),
+
+        date: new Date().toLocaleString()
+
+    };
+
+    localStorage.setItem(
+        "debitCardRequest",
+        JSON.stringify(request)
+    );
+
+    alert("Your debit card request has been submitted successfully!");
+
+    loadDebitCard();
 }
