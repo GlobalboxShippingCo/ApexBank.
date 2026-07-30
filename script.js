@@ -500,29 +500,49 @@ function loadDebitCard() {
     let request =
         JSON.parse(localStorage.getItem("debitCardRequest"));
 
-        if (request) {
+    if (!request) {
+        status.innerHTML = "No request submitted.";
+        return;
+    }
 
     let elapsed = Date.now() - request.createdAt;
 
-    // Change to Approved after 1 minute
+    // 1 Minute
     if (
         request.status === "🟡 Processing" &&
         elapsed >= 1 * 60 * 1000
     ) {
         request.status = "✅ Approved";
-
-        localStorage.setItem(
-            "debitCardRequest",
-            JSON.stringify(request)
-        );
     }
 
-}
-
-    if (!request) {
-        status.innerHTML = "No request submitted.";
-        return;
+    // 2 Minutes
+    if (
+        request.status === "✅ Approved" &&
+        elapsed >= 2 * 60 * 1000
+    ) {
+        request.status = "🖨️ Card Printed";
     }
+
+    // 3 Minutes
+    if (
+        request.status === "🖨️ Card Printed" &&
+        elapsed >= 3 * 60 * 1000
+    ) {
+        request.status = "📦 Shipped";
+    }
+
+    // 4 Minutes
+    if (
+        request.status === "📦 Shipped" &&
+        elapsed >= 4 * 60 * 1000
+    ) {
+        request.status = "🚚 Out for Delivery";
+    }
+
+    localStorage.setItem(
+        "debitCardRequest",
+        JSON.stringify(request)
+    );
 
     status.innerHTML = `
         <strong>Status:</strong> ${request.status}<br>
