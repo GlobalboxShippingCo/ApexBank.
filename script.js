@@ -500,6 +500,25 @@ function loadDebitCard() {
     let request =
         JSON.parse(localStorage.getItem("debitCardRequest"));
 
+        if (request) {
+
+    let elapsed = Date.now() - request.createdAt;
+
+    // Change to Approved after 1 minute
+    if (
+        request.status === "🟡 Processing" &&
+        elapsed >= 1 * 60 * 1000
+    ) {
+        request.status = "✅ Approved";
+
+        localStorage.setItem(
+            "debitCardRequest",
+            JSON.stringify(request)
+        );
+    }
+
+}
+
     if (!request) {
         status.innerHTML = "No request submitted.";
         return;
