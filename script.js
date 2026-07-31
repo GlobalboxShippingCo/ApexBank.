@@ -539,6 +539,14 @@ function loadDebitCard() {
         request.status = "🚚 Out for Delivery";
     }
 
+    // 5 Minutes
+if (
+    request.status === "🚚 Out for Delivery" &&
+    elapsed >= 5 * 60 * 1000
+) {
+    request.status = "📬 Delivered";
+}
+
     localStorage.setItem(
         "debitCardRequest",
         JSON.stringify(request)
