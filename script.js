@@ -22,7 +22,7 @@ function register() {
     localStorage.setItem("accountNumber", accountNumber);
 
     // Default balance
-    localStorage.setItem("balance", 24750.50);
+    localStorage.setItem("balance", 70750.50);
 
     alert("Account created successfully!");
 
