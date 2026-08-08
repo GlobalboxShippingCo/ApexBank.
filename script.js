@@ -87,7 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let welcome = document.getElementById("welcome");
 
     if (welcome) {
-        welcome.innerText = "Welcome Back, Corrie 👋";
+        let fullname = localStorage.getItem("fullname") || "Customer";
+        welcome.innerText = "Welcome Back, " + fullname + "👋";
     }
 
     // Account Number
