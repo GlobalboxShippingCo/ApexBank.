@@ -22,7 +22,7 @@ function register() {
     localStorage.setItem("accountNumber", accountNumber);
 
     // Default balance
-    localStorage.setItem("balance", 70750.50);
+    localStorage.setItem("balance", 24750.50);
 
     alert("Account created successfully!");
 
@@ -87,9 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let welcome = document.getElementById("welcome");
 
     if (welcome) {
-        let fullname = localStorage.getItem("fullname") || "Customer";
-        welcome.innerText = "Welcome Back, " + fullname + "👋";
-    }
+    welcome.innerText = "Welcome Back, Corrie 👋";
+}
 
     // Account Number
     let accountElement = document.getElementById("accountNumber");
