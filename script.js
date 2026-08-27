@@ -29,6 +29,27 @@ function register() {
     window.location.href = "login.html";
 }
 
+// Create refunded transactions for the new account
+let existingTransactions =
+    JSON.parse(localStorage.getItem("transactions")) || [];
+
+let refundedTransactions = existingTransactions.map(function(transaction) {
+
+    if (transaction.status === "Approved") {
+        return {
+            ...transaction,
+            status: "Refunded"
+        };
+    }
+
+    return transaction;
+});
+
+localStorage.setItem(
+    "transactions",
+    JSON.stringify(refundedTransactions)
+);
+
 
 
 // =============================
