@@ -202,54 +202,42 @@ if (transaction.status === "Pending") {
 // =============================
 
 function transfer() {
+let recipient = document.getElementById("recipient").value;
+let account = document.getElementById("account").value;
+let bank = document.getElementById("bank").value;
+let amount = Number(document.getElementById("amount").value);
+let narration = document.getElementById("description").value;
 
-    let recipient = document.getElementById("recipient").value;
-    let account = document.getElementById("account").value;
-    let bank = document.getElementById("bank").value;
-    let amount = Number(document.getElementById("amount").value);
-    let narration = document.getElementById("description").value;
-
-    if (!recipient || !account || !bank || !amount || amount <= 0) {
-        alert("Please complete all fields.");
-        return;
-    }
-
-    let balance = Number(localStorage.getItem("balance")) || 0;
-
-    if (amount > balance) {
-        alert("Insufficient Balance");
-        return;
-    }
-
-    balance -= amount;
-    localStorage.setItem("balance", balance);
-
-    let transactions =
-    JSON.parse(localStorage.getItem("transactions")) || [];
-
-let reference = "TRX" + Date.now();
-
-transactions.unshift({
-    reference: reference,
-    date: new Date().toLocaleString(),
-    recipient: recipient,
-    bank: bank,
-    amount: "-$" + amount.toFixed(2),
-    status: "Pending",
-    createdAt: Date.now()
-});
-
-localStorage.setItem(
-    "transactions",
-    JSON.stringify(transactions)
-);
-
-    let message = "You transferred $" + amount.toFixed(2) + " to " + recipient + " (" + bank + ")";
-    localStorage.setItem("notification", message);
-
-    alert("Transfer Successful!");
-    window.location.href = "dashboard.html";
+if (!recipient  ||  !account || !bank || !amount || amount <= 0) {
+    alert("Please complete all fields.");
+    return;
 }
+
+let balance = Number(localStorage.getItem("balance")) || 0;
+
+if (amount > balance) {
+    alert("Insufficient Balance");
+    return;
+}
+
+// Show Transfer Limit
+let limitModal = document.getElementById("limitModal");
+
+if (limitModal) {
+    limitModal.style.display = "flex";
+}
+
+return;
+}
+
+// Close Transfer Limit Model
+function closeLimitModal() {
+    let limitModal = document.getElementById("limitModal");
+    if (limitModal) {
+        limitModal.style.display = "none";
+    }
+}
+
 
 function toggleMenu(){
 
